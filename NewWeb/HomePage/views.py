@@ -12,6 +12,7 @@ from HomePage.models import Category,Best,Article,Comment,UserProfile
 from HomePage.forms import CommentForm
 # Create your views here.
 
+#首页
 #@login_required,该装饰器用于告诉程序，使用这个方法是要求用户登录的。
 def index(request):
     cates = Category.objects.all().order_by("-id") #分类列表
@@ -51,6 +52,7 @@ def index(request):
     }
     return render(request, 'index.html', context=context)      #模板渲染
 
+#详情页
 def detail(request,article_id):
     cates = Category.objects.all().order_by("-id")  #分类列表
 
@@ -84,6 +86,7 @@ def detail(request,article_id):
     }
     return render(request,'detail.html',context=context)
 
+#登录
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -102,12 +105,14 @@ def user_login(request):
     context = {'form': form}
     return render(request, 'login.html', context=context)
 
+#注销
 class LogoutView(View):
 
     def get(self,request):
         logout(request)
         return redirect(reverse("index"))    #返回首页
 
+#注册
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
