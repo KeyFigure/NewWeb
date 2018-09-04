@@ -13,7 +13,7 @@
 {% endfor %}
 {% if request.user.is_authenticated %}
     <p>{{ request.user.username }}</p>
-    <a href="{% url "logout" %}">
+    <a href="{% url 'logout' %}">
         退出
     </a>
 {% else %}
