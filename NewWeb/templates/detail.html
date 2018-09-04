@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>详情页</title>
+    {#    <link rel="stylesheet" href="{% static 'detail.css' %}" media="screen" title="no title" charset="utf-8">#}
+</head>
+<body>
+<a href="{% url 'index' %}">首页</a>
+{% for cate in cates %}
+    {{ cate.name }}
+{% endfor %}
+{% if request.user.is_authenticated %}
+    <p>{{ request.user.username }}</p>
+    <a href="{% url "logout" %}">
+        退出
+    </a>
+{% else %}
+    <a href="{% url 'login' %}">
+        <p>登录</p>
+    </a>
+    <a href="{% url 'register' %}">
+        <p>注册</p>
+    </a>
+{% endif %}
+<h1>{{ article.title }}</h1>
+<p>
+    <span> {{ article.author_name }}</span>
+    {{ article.content }}
+</p>
+<a href="{{ article.source_link }}"><span>查看原文</span></a>
+<p><b>评论</b></p>
+{% for comment in comments %}
+    <span>&nbsp;&nbsp;&nbsp;
+        <b>
+        {{ comment.belong_user.username }}
+        </b>&nbsp;&nbsp;&nbsp;
+        {{ comment.created }}
+    </span>
+    <span>&nbsp;&nbsp;&nbsp;
+        {{ comment.words }}
+    </span>
+{% endfor %}
+<form class="form" method="post">
+    {% if form.errors %}
+        <div class="ui error">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+    {{ form.comment }}
+    {% if request.user.is_authenticated %}
+        <button>
+            <span>写评论</span>
+        </button>
+    {% endif %}
+    {% csrf_token %}
+</form>
+<div>
+    <div>
+        <h4><b>推荐阅读</b></h4>
+        {% for read_recommendtop3 in read_recommendtop3list %}
+            <p><a href="{{ read_recommendtop3.id }}">
+                {{ read_recommendtop3.title }}</a>
+            </p>
+        {% endfor %}
+        {% for read_recommend in read_recommendlist %}
+            <p>
+                <a href="{{ read_recommend.id }}">
+                    {{ read_recommend.title }}
+                </a>
+            </p>
+            <span>{{ read_recommend.publish_time | date:"Y-m-d" }}</span>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

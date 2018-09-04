@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册页</title>
+</head>
+<body>
+<h1>注册</h1>
+<form class="form" method="post">
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+    {% csrf_token %}
+    <p>用户名{{ form.username }}</p>
+    <p>邮箱{{ form.email }}</p>
+    <p>密码{{ form.password }}</p>
+    <p>再输一次{{ form.password_confirm }}</p>
+    <button>注册</button>
+</form>
+<a href="{% url 'index' %}">首页</a>
+</body>
+</html>

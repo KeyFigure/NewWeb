@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+</head>
+<body>
+<h1>登录</h1>
+<form  class="form" method="post">
+    {% csrf_token %}
+    <p>用户名{{ form.user }}</p>
+    <p>密码{{ form.password }}</p>
+</form>
+<button>
+    登录
+</button>
+</body>
+</html>
