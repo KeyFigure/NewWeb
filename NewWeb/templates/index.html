@@ -12,7 +12,7 @@
     {{ cate.name }}
 {% endfor %}
 {% if request.user.is_authenticated %}
-    <a href="{% url "logout" %}">
+    <a href="{% url 'logout' %}">
         退出
     </a>
 {% else %}
