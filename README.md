@@ -1,7 +1,7 @@
 基于Django框架的新闻Web
 ===========================================
 ## 开发环境
-系统:windows <br>
+系统:windows10 <br>
 IDE:Pycharm <br>
 Web框架:Django <br>
 
