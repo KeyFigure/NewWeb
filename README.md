@@ -22,6 +22,7 @@ Web框架:Django <br>
 
 ## 总结
 本项目还有许多可改进的地方,例如   <br>
+增加网页的排版,可使用css,JavaScript <br>
 使用缓存系统   <br>
 更改链接的数据库(默认为sqlite)为mysql   <br>
 增加相关业务,比如广告插入等等  <br>
